@@ -1,0 +1,41 @@
+{% extends "fusionapp/base.html" %}
+{% block content %}
+
+
+<div class=" d-flex flex-column align-items-center justify-content-center">
+    <h1>Welcome {{ user.username }}</h1>
+    <p>Here are the latest posts</p>
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'create-post' %}" class="btn btn-primary">Create Post</a>
+    {% endif %}
+</div>
+    
+<div class="d-flex flex-column  p-4 gap-4 py-md-5 align-items-center justify-content-center ">
+<ul class="list-group list-group-flush">
+ {% for post in posts %}
+ <li class="list-group-item rounded-3 post">
+   
+    <div class="d-flex w-100  overflow-y-auto ">
+      <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 ">
+      <h5 class="mb-3 p-2">{{ post.author }}</h5>
+    </div>
+    <div class="d-flex  w-100 justify-content-between  overflow-y-auto">
+      <div>
+        <h5>{{ post.title }}</h5>
+        <p class="mb-0 opacity-75">{{ post.content|linebreaksbr }}</p>
+      </div>
+    <small class="opacity-50">{{ post.creation_date|timesince|slice:":4" }}</small>
+    </div>
+   
+    {% if user.is_authenticated and user == post.author %}
+    <a href="{% url 'update-post' post.id %}" class="btn btn-primary btn-sm">Edit</a>
+    {% endif %}
+   
+    <a href="{% url 'view-post' post.id %}" class="btn btn-primary btn-sm" >View</a>
+ </li>
+{% endfor %} 
+</ul>
+</div>
+
+{% endblock %}

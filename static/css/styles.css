@@ -1,0 +1,27 @@
+h1 {
+  color: #db6767;
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.form-layout {
+  width: 600px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.post {
+  margin: 10px 0;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  width: 600px;
+}
+
+
+
+
+
+
+

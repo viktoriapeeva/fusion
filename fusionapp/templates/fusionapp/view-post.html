@@ -1,0 +1,29 @@
+
+{% extends 'fusionapp/base.html' %}
+{% block content %}
+
+<div class="container bg-light shadow-md p-5 form-layout">
+    <h1>View Post</h1>
+    <hr />
+    <br />
+
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p>Posted by: {{ post.author }}</p>
+        <p>Posted on: {{ post.creation_date }}</p>
+    </div>
+
+    
+    {% if post.author == user %}
+    <a href="{% url 'update-post' post.id %}" class="btn btn-primary w-100 btn-block p-2">Edit Post</a>
+    &nbsp;
+    <form action="{% url 'delete-post' post.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger w-100 btn-block p-2">Delete Post</button>
+    </form>
+    <br />
+    {% endif %}
+</div>
+
+{% endblock %}
